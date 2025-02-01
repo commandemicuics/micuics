@@ -35,39 +35,41 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Erreur lors du chargement du CSV:", error));
 
-    // Génération des étoiles
-    const starsContainer = document.getElementById("stars-container");
+    // Génération des flocons
+    const snowflakesContainer = document.getElementById("snowflakes-container");
 
-    function createStar() {
-        const star = document.createElement("div");
-        star.classList.add("star");
+    function createSnowflake() {
+        const snowflake = document.createElement("div");
+        snowflake.classList.add("snowflake");
+
+        // Ajouter un caractère Unicode de flocon de neige
+        snowflake.textContent = "❄️";
 
         // Position horizontale aléatoire
         const randomX = Math.random();
-        star.style.setProperty("--random-x", randomX);
+        snowflake.style.setProperty("--random-x", randomX);
 
         // Durée de chute aléatoire
         const randomDuration = Math.random() * 10 + 5; // Entre 5 et 15 secondes
-        star.style.animationDuration = `${randomDuration}s`;
+        snowflake.style.animationDuration = `${randomDuration}s`;
 
         // Taille aléatoire
-        const randomSize = Math.random() * 2 + 1; // Entre 1px et 3px
-        star.style.width = `${randomSize}px`;
-        star.style.height = `${randomSize}px`;
+        const randomSize = Math.random() * 10 + 10; // Entre 10px et 20px
+        snowflake.style.fontSize = `${randomSize}px`;
 
         // Opacité aléatoire
-        const randomOpacity = Math.random() * 0.5 + 0.3; // Entre 0.3 et 0.8
-        star.style.opacity = randomOpacity;
+        const randomOpacity = Math.random() * 0.3 + 0.5; // Entre 0.5 et 0.8
+        snowflake.style.opacity = randomOpacity;
 
-        // Ajouter l'étoile au conteneur
-        starsContainer.appendChild(star);
+        // Ajouter le flocon au conteneur
+        snowflakesContainer.appendChild(snowflake);
 
-        // Supprimer l'étoile après la fin de l'animation
-        star.addEventListener("animationend", () => {
-            star.remove();
+        // Supprimer le flocon après la fin de l'animation
+        snowflake.addEventListener("animationend", () => {
+            snowflake.remove();
         });
     }
 
-    // Créer des étoiles à intervalle régulier
-    setInterval(createStar, 200); // Une nouvelle étoile toutes les 200ms
+    // Créer des flocons à intervalle régulier
+    setInterval(createSnowflake, 100); // Un nouveau flocon toutes les 100ms
 });

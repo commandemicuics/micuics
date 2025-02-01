@@ -1,117 +1,75 @@
 /* Thème général */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff; /* Couleur crème pour rappeler le chocolat */
+    background-color: #797373; /* Fond gris foncé pour rappeler les nuages */
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: #5a3e36; /* Marron foncé pour le texte */
-    overflow: hidden; /* Désactiver le défilement */
+    color: #2b2b2b; /* Texte blanc pour contraster avec le fond sombre */
+    overflow: hidden; /* Désactiver le défilement global */
 }
 
-/* Effet de chocolat fondu en arrière-plan */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #7b3f00, #5a3e36, #7b3f00);
-    background-size: 200% 200%;
-    animation: melt 10s infinite alternate;
-    z-index: -2;
-}
-
-/* Animation de fond (chocolat fondu) */
-@keyframes melt {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
-
-/* Conteneur principal */
-.container {
-    background-color: rgba(255, 243, 224, 0.9); /* Fond légèrement doré avec transparence */
+/* Conteneur principal avec défilement */
+.container.scrollable {
+    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement plus clair pour le contenu */
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     width: 80%;
     max-width: 600px;
     text-align: center;
     position: relative;
     z-index: 1;
+    max-height: 80vh; /* Limite la hauteur pour activer le défilement */
+    overflow-y: auto; /* Active le défilement vertical */
     animation: glow 5s infinite alternate; /* Effet de lumière tamisée */
 }
 
 /* Effet de lumière tamisée */
 @keyframes glow {
     0% {
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+        box-shadow: 0 0 10px rgba(0, 217, 255, 0.5), 0 0 20px rgba(0, 238, 255, 0.3);
     }
     100% {
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6);
+        box-shadow: 0 0 20px rgba(0, 136, 255, 0.8), 0 0 40px rgba(0, 217, 255, 0.6);
     }
 }
 
-/* Tablettes de chocolat en bordure */
-.border-chocolate {
+/* Flocons dans le fond */
+#snowflakes-container {
     position: fixed;
-    background-image: url('chocolate-bar.png'); /* Image de la tablette */
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0;
-    animation: fade-in-out 5s infinite alternate;
-}
-
-.top {
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 50px;
-}
-
-.bottom {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 50px;
-}
-
-.left {
-    top: 50%;
     left: 0;
-    transform: translateY(-50%) rotate(-90deg);
-    width: 100px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Empêche les interactions */
+    z-index: -1;
 }
 
-.right {
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%) rotate(90deg);
-    width: 100px;
-    height: 50px;
+.snowflake {
+    position: absolute;
+    font-size: 20px; /* Taille des flocons */
+    color: rgba(240, 250, 255, 1); /* Bleu très clair avec opacité */
+    animation: fall 10s infinite ease-in-out;
 }
 
-/* Animation des tablettes en bordure */
-@keyframes fade-in-out {
+/* Animation des flocons */
+@keyframes fall {
     0% {
+        transform: translateY(-100vh) translateX(0);
         opacity: 0;
     }
-    100% {
+    10% {
         opacity: 1;
     }
+    100% {
+        transform: translateY(100vh) translateX(calc(var(--random-x) * 100vw));
+        opacity: 0;
+    }
 }
-
 /* Styles du tableau */
 table {
     width: 100%;
@@ -121,19 +79,19 @@ table {
 }
 
 th {
-    background-color: #d2b48c; /* Marron clair pour l'en-tête */
-    color: #5a3e36;
+    background-color: #5a3e36; /* Marron foncé pour l'en-tête */
+    color: #fff;
     padding: 10px;
     font-weight: bold;
 }
 
 td {
     padding: 10px;
-    border-bottom: 1px solid #d2b48c;
+    border-bottom: 1px solid #5a3e36;
 }
 
 tr:nth-child(even) {
-    background-color: #faf3e0; /* Alternance de couleur pour les lignes */
+    background-color: #e9e9e9; /* Alternance de couleur pour les lignes */
 }
 
 /* Mise en avant du podium */
@@ -153,39 +111,4 @@ tr:nth-child(3) td {
     background-color: #e9be93; /* Bronze pour la troisième place */
     font-weight: bold;
     color: #5a3e36;
-}
-
-/* Étoiles dans le fond */
-#stars-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Empêche les interactions */
-    z-index: -1;
-}
-
-.star {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background-color: rgba(255, 255, 255, 0.8); /* Blanc avec opacité */
-    border-radius: 50%;
-    animation: float 10s infinite ease-in-out;
-}
-
-/* Animation des étoiles */
-@keyframes float {
-    0% {
-        transform: translateY(-100vh) translateX(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) translateX(calc(var(--random-x) * 100vw));
-        opacity: 0;
-    }
 }

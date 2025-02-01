@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classement des Micuics</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .lien-cache {
+            color: blue; /* Texte en bleu */
+            text-decoration: none; /* Pas de soulignement */
+            cursor: pointer;
+        }
+        .lien-cache:hover {
+            color: #1e90ff; /* Bleu plus clair au survol */
+        }
+    </style>
+</head>
+<body>
+    <!-- Conteneur principal -->
+    <div class="container">
+        <h1>Classement des coloc pour les Micuics 🍫</h1>
+        <p class="prize-info"><strong>Lot à gagner : Projecteur vidéo ! 📽️</strong></p>
+        <table id="rankingTable">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Nom de la colocation</th>
+                    <th>Micuics commandés</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les données seront insérées ici dynamiquement -->
+            </tbody>
+        </table>
+        <p class="prize-info">
+            <span class="lien-cache" onclick="window.location.href='https://www.instagram.com/nadben__/'">Commande tes micuics ici</span>
+        </p>
+    </div>
+
+    <!-- Conteneur pour les étoiles -->
+    <div id="stars-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

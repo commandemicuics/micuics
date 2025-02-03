@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Charger les données CSV pour le classement
-    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSNt4LhcL_7ONX9xynngciezXrBAVlsf1jBWAR_03Kb8M9QLD8Uy0sZ7d_hIplKfet8jKc-37kSFFRz/pub?gid=0&single=true&output=csv";
+    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUCMqpGR25E3pSTtY4xqKp_S36-WAOyD5B5G1Ne5-xolv_-Ru_mGnx53YXcDuADBBGjZbXPZF7Cefs/pub?gid=977177823&single=true&output=csv";
     fetch(csvUrl)
         .then(response => response.text())
         .then(data => {
